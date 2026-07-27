@@ -6,22 +6,45 @@
 }
 
 body{
-    background:linear-gradient(135deg,#0f172a,#020617,#1e1b4b);
+    margin:0;
+    padding:0;
+    min-height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
-    min-height:100vh;
+    overflow:hidden;
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(-45deg,#020024,#090979,#000428,#1b2735,#4b0082);
+    background-size:500% 500%;
+    animation:galaxyMove 18s ease infinite;
+}
+
+@keyframes galaxyMove{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 }
 
 .container{
-    width:340px;
-    padding:30px;
+    width:350px;
+    padding:35px;
     text-align:center;
+    border-radius:25px;
     background:rgba(255,255,255,0.08);
-    backdrop-filter:blur(12px);
-    border-radius:20px;
-    box-shadow:0 0 30px rgba(0,255,255,.3);
-    animation:glow 2s infinite alternate;
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,0.15);
+    box-shadow:
+        0 0 25px rgba(0,255,255,0.25),
+        0 0 60px rgba(140,82,255,0.15);
+    transition:0.4s;
+}
+
+.container:hover{
+    transform:translateY(-8px);
+    box-shadow:
+        0 0 35px rgba(0,255,255,0.45),
+        0 0 80px rgba(140,82,255,0.35);
 }
 
 @keyframes glow{
@@ -34,46 +57,109 @@ body{
 }
 
 .profile{
-    width:150px;
-    height:150px;
+    width:160px;
+    height:160px;
     border-radius:50%;
-    border:4px solid cyan;
     object-fit:cover;
-    box-shadow:0 0 20px cyan;
-    margin-bottom:20px;
+    border:4px solid #00eaff;
+    box-shadow:
+        0 0 20px #00eaff,
+        0 0 45px #8c52ff;
+    transition:0.4s;
+}
+
+.profile:hover{
+    transform:scale(1.08) rotate(3deg);
 }
 
 h1{
     color:white;
-    font-size:28px;
-    margin-bottom:10px;
+    text-shadow:0 0 10px cyan,
+                0 0 25px #8c52ff;
 }
 
 .uid{
     color:#ddd;
-    margin-bottom:25px;
+    font-size:17px;
 }
 
 .btn{
     display:block;
+    margin:15px 0;
+    padding:15px;
+    border-radius:15px;
     text-decoration:none;
-    padding:14px;
-    margin:12px 0;
-    border-radius:12px;
-    color:white;
-    font-weight:bold;
-    transition:.3s;
+    color:#fff;
+    font-weight:700;
+    font-size:16px;
+    letter-spacing:1px;
+    transition:0.35s;
+    position:relative;
+    overflow:hidden;
+}
+
+.btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-100%;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,0.2);
+    transition:.5s;
+}
+
+.btn:hover::before{
+    left:100%;
 }
 
 .instagram{
-    background:#E1306C;
+    background:linear-gradient(45deg,#fd1d1d,#e1306c,#f77737);
 }
 
 .whatsapp{
-    background:#25D366;
+    background:linear-gradient(45deg,#25D366,#128C7E);
 }
 
 .btn:hover{
-    transform:scale(1.05);
-    box-shadow:0 0 20px white;
-  }
+    transform:scale(1.06);
+    box-shadow:0 0 25px cyan;
+} 
+
+/* Floating Animation */
+.container{
+    animation:floatCard 4s ease-in-out infinite;
+}
+
+@keyframes floatCard{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0);}
+}
+
+/* Stars */
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-image:
+    radial-gradient(white 1px, transparent 1px),
+    radial-gradient(cyan 1px, transparent 1px),
+    radial-gradient(#8c52ff 1px, transparent 1px);
+    background-size:80px 80px,120px 120px,180px 180px;
+    opacity:.35;
+    animation:starsMove 35s linear infinite;
+    pointer-events:none;
+}
+
+@keyframes starsMove{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-300px);
+    }
+}
